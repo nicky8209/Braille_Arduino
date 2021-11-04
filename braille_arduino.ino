@@ -75,10 +75,10 @@ void loop(){
     
     if(next>=0){  //모터 회전
     Serial.println("모터2 정방향 회전");
-    myStepper2.step(steps[next]);
+    myStepper2.step(-steps[next]);
     }else{
       Serial.println("모터2 반대방향 회전");
-      myStepper2.step(-steps[next]);
+      myStepper2.step(steps[next]);
     }   
     
     now2 = next%8; //현재값 저장
