@@ -6,6 +6,8 @@ int next=0;
 String temp;
 int now2=0;
 int next2=0;
+int now3=0;
+int next3=0;
 String temp2;
 String braille[2];
 int steps[8]={0,256,512,768,1024,1280,1536,1792}; //각도배열
@@ -63,9 +65,10 @@ void loop(){
     now = next%8; //현재값 저장
     Serial.print("now:");
     Serial.println(now);
-    Serial.println("끝");
+    Serial.println("모터1 off 모터2 on");
     motor1=false; //모터1 off
     motor2=true; //모터2 on
+    
   delay(500);
   }else if(motor2==true){//모터2
     next = temp.toInt();
@@ -86,7 +89,7 @@ void loop(){
     now2 = next%8; //현재값 저장
     Serial.print("now2:");
     Serial.println(now2);
-    Serial.println("끝");
+    Serial.println("모터2 off 모터3 on");
     motor2=false; //모터2 off
     motor3=true; //모터3 on
   }else if(motor3==true){//모터3
@@ -94,22 +97,22 @@ void loop(){
     Serial.print("next:");
     Serial.println(next);
     
-    next = next - now2;  //다음 칸 계산
+    next = next - now3;  //다음 칸 계산
     Serial.print("계산후next:");
     Serial.println(next);
     
     if(next>=0){  //모터 회전
     Serial.println("모터3 정방향 회전");
-    myStepper2.step(steps[next]);
+    myStepper3.step(steps[next]);
     }else{
       Serial.println("모터3 반대방향 회전");
-      myStepper2.step(-steps[next]);
+      myStepper3.step(-steps[next]);
     }   
     
     now2 = next%8; //현재값 저장
-    Serial.print("now2:");
-    Serial.println(now2);
-    Serial.println("끝");
+    Serial.print("now3:");
+    Serial.println(now3);
+    Serial.println("모터3 off 모터1 on");
     motor3=false; //모터3 off
     motor1=true; //모터1 on
     }
